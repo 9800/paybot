@@ -21,23 +21,23 @@ do
 			read -p "Are you sure you want to update?[y/n]: " answer
 			echo " "
 			if [ "$answer" != "${answer#[Yy]}" ]; then
-			mv /var/www/html/wizwizxui-timebot/baseInfo.php /root/
-      			# mv /var/www/html/wizwizxui-timebot/settings/values.php /root/
+			mv /var/www/html/shop/baseInfo.php /root/
+      			# mv /var/www/html/shop/settings/values.php /root/
 			sudo apt-get install -y git
 			sudo apt-get install -y wget
 			sudo apt-get install -y unzip
 			sudo apt install curl -y
 			echo -e "\n\e[92mUpdating ...\033[0m\n"
 			sleep 4
-			rm -r /var/www/html/wizwizxui-timebot/
+			rm -r /var/www/html/shop/
 			echo -e "\n\e[92mWait a few seconds ...\033[0m\n"
 			sleep 3
-			git clone https://github.com/wizwizdev/wizwizxui-timebot.git /var/www/html/wizwizxui-timebot
-			sudo chown -R www-data:www-data /var/www/html/wizwizxui-timebot/
-			sudo chmod -R 755 /var/www/html/wizwizxui-timebot/
+			git clone https://github.com/9800/paybot.git /var/www/html/shop
+			sudo chown -R www-data:www-data /var/www/html/shop/
+			sudo chmod -R 755 /var/www/html/shop/
 			sleep 3
-			mv /root/baseInfo.php /var/www/html/wizwizxui-timebot/
-      			# mv /root/values.php /var/www/html/wizwizxui-timebot/settings/
+			mv /root/baseInfo.php /var/www/html/shop/
+      			# mv /root/values.php /var/www/html/shop/settings/
 # 			if [ $? -ne 0 ]; then
 # 			echo -e "\n\e[41mError: The update failed!\033[0m\n"
 # 			exit 1
@@ -45,14 +45,14 @@ do
 			
 			sleep 1
 
-   			db_namewizwiz=$(cat /var/www/html/wizwizxui-timebot/baseInfo.php | grep '$dbName' | cut -d"'" -f2)
-		      	db_userwizwiz=$(cat /var/www/html/wizwizxui-timebot/baseInfo.php | grep '$dbUserName' | cut -d"'" -f2)
-		      	db_passwizwiz=$(cat /var/www/html/wizwizxui-timebot/baseInfo.php | grep '$dbPassword' | cut -d"'" -f2)
-			bot_token=$(cat /var/www/html/wizwizxui-timebot/baseInfo.php | grep '$botToken' | cut -d"'" -f2)
-			bot_token2=$(cat /var/www/html/wizwizxui-timebot/baseInfo.php | grep '$botToken' | cut -d'"' -f2)
-			bot_url=$(cat /var/www/html/wizwizxui-timebot/baseInfo.php | grep '$botUrl' | cut -d'"' -d"'" -f2)
+   			db_namewizwiz=$(cat /var/www/html/shop/baseInfo.php | grep '$dbName' | cut -d"'" -f2)
+		      	db_userwizwiz=$(cat /var/www/html/shop/baseInfo.php | grep '$dbUserName' | cut -d"'" -f2)
+		      	db_passwizwiz=$(cat /var/www/html/shop/baseInfo.php | grep '$dbPassword' | cut -d"'" -f2)
+			bot_token=$(cat /var/www/html/shop/baseInfo.php | grep '$botToken' | cut -d"'" -f2)
+			bot_token2=$(cat /var/www/html/shop/baseInfo.php | grep '$botToken' | cut -d'"' -f2)
+			bot_url=$(cat /var/www/html/shop/baseInfo.php | grep '$botUrl' | cut -d'"' -d"'" -f2)
 			
-			filepath="/var/www/html/wizwizxui-timebot/baseInfo.php"
+			filepath="/var/www/html/shop/baseInfo.php"
 			
 			bot_value=$(cat $filepath | grep '$admin =' | sed 's/.*= //' | sed 's/;//')
 			
@@ -79,10 +79,10 @@ do
      
 			sleep 1
    
-			sudo rm -r /var/www/html/wizwizxui-timebot/webpanel
-			sudo rm -r /var/www/html/wizwizxui-timebot/install
-			rm /var/www/html/wizwizxui-timebot/createDB.php
-			rm /var/www/html/wizwizxui-timebot/updateShareConfig.php
+			sudo rm -r /var/www/html/shop/webpanel
+			sudo rm -r /var/www/html/shop/install
+			rm /var/www/html/shop/createDB.php
+			rm /var/www/html/shop/updateShareConfig.php
 			clear
 			
 			echo -e "\n\e[92mThe script was successfully updated! \033[0m\n"
@@ -104,12 +104,12 @@ do
 			sudo apt-get install -y php-ssh2
 			sudo apt-get install -y libssh2-1-dev libssh2-1
 
-			destination_dir=$(find /var/www/html -type d -name "*wizpanel*" | head -n 1)
+			destination_dir=$(find /var/www/html -type d -name "*Panel*" | head -n 1)
 
 			if [ -z "$destination_dir" ]; then
 			    RANDOM_NUMBER=$(( RANDOM % 10000000 + 1000000 ))
-			    mkdir "/var/www/html/wizpanel${RANDOM_NUMBER}"
-			    echo "Directory created: wizpanel${RANDOM_NUMBER}"
+			    mkdir "/var/www/html/Panel${RANDOM_NUMBER}"
+			    echo "Directory created: Panel${RANDOM_NUMBER}"
 			    echo "Folder created successfully!"
 			    sudo mkdir /root/updatewizwiz
    			    sleep 1
@@ -124,20 +124,20 @@ do
 			
 			
 
-			 destination_dir=$(find /var/www/html -type d -name "*wizpanel*" | head -n 1)
+			 destination_dir=$(find /var/www/html -type d -name "*Panel*" | head -n 1)
 
 			 cd /var/www/html/
-			 wget -O wizwizpanel.zip https://github.com/wizwizdev/wizwizxui-timebot/releases/download/9.1.1/wizwizpanel.zip
+			 wget -O Panel.zip https://github.com/9800/paybot/releases/download/9.1.1/Panel.zip
 
-			 file_to_transfer="/var/www/html/wizwizpanel.zip"
-			 destination_dir=$(find /var/www/html -type d -name "*wizpanel*" | head -n 1)
+			 file_to_transfer="/var/www/html/Panel.zip"
+			 destination_dir=$(find /var/www/html -type d -name "*Panel*" | head -n 1)
 
 			 if [ -z "$destination_dir" ]; then
 			   echo "Error: Could not find directory containing 'wiz' in '/var/www/html'"
 			   exit 1
 			 fi
 
-			 mv "$file_to_transfer" "$destination_dir/" && yes | unzip "$destination_dir/wizwizpanel.zip" -d "$destination_dir/" && rm "$destination_dir/wizwizpanel.zip" && sudo chmod -R 755 "$destination_dir/" && sudo chown -R www-data:www-data "$destination_dir/" 
+			 mv "$file_to_transfer" "$destination_dir/" && yes | unzip "$destination_dir/Panel.zip" -d "$destination_dir/" && rm "$destination_dir/Panel.zip" && sudo chmod -R 755 "$destination_dir/" && sudo chown -R www-data:www-data "$destination_dir/" 
 
 
 			wait
@@ -145,10 +145,10 @@ do
 
 			echo -e "\n\e[92mUpdating ...\033[0m\n"
 			
-			bot_token=$(cat /var/www/html/wizwizxui-timebot/baseInfo.php | grep '$botToken' | cut -d"'" -f2)
-			bot_token2=$(cat /var/www/html/wizwizxui-timebot/baseInfo.php | grep '$botToken' | cut -d'"' -f2)
+			bot_token=$(cat /var/www/html/shop/baseInfo.php | grep '$botToken' | cut -d"'" -f2)
+			bot_token2=$(cat /var/www/html/shop/baseInfo.php | grep '$botToken' | cut -d'"' -f2)
 			
-			filepath="/var/www/html/wizwizxui-timebot/baseInfo.php"
+			filepath="/var/www/html/shop/baseInfo.php"
 			
 			bot_value=$(cat $filepath | grep '$admin =' | sed 's/.*= //' | sed 's/;//')
 			
@@ -166,7 +166,7 @@ do
 			
 # 			echo -e '\e[31m'
 
-# 			find /var/www/html -type d -name "*wizpanel*" -print | sed "s|/var/www/html|& \n\n\nPanel: https://yourdomain.com|g"
+# 			find /var/www/html -type d -name "*Panel*" -print | sed "s|/var/www/html|& \n\n\nPanel: https://yourdomain.com|g"
 			
 # 			echo -e '\033[0m'
 
@@ -191,8 +191,8 @@ do
 # 			PATHS=$(cat /root/confwizwiz/dbrootwizwiz.txt | grep '$path' | cut -d"'" -f2)
 # 			(crontab -l | grep -v "backupnutif.php") | crontab -
 			
-# 			(crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/wizpanel${PATHS}/backupnutif.php >/dev/null 2>&1") | sort - | uniq - | crontab -
-# 			(crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/wizpanel${PATHS}/backupnutif.php >/dev/null 2>&1") | sort - | uniq - | crontab -
+# 			(crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/Panel${PATHS}/backupnutif.php >/dev/null 2>&1") | sort - | uniq - | crontab -
+# 			(crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/Panel${PATHS}/backupnutif.php >/dev/null 2>&1") | sort - | uniq - | crontab -
 # 			fi
 			
 			clear
@@ -203,11 +203,11 @@ do
 # 			PATHS2=$(cat /root/confwizwiz/dbrootwizwiz.txt | grep '$path' | cut -d"'" -f2)
 # 			PATHS3=$(cat /root/updatewizwiz/wizup.txt | grep '$path' | cut -d"'" -f2)
 # 			if [ -d "/root/confwizwiz/dbrootwizwiz.txt" ]; then
-#                             echo -e "\e[92mPanel: \e[31mhttps://${DOMAIN_NAME}/wizpanel${PATHS}\033[0m\n"
-# 			    (crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/wizpanel${PATHS}/backupnutif.php >/dev/null 2>&1") | sort - | uniq - | crontab -
+#                             echo -e "\e[92mPanel: \e[31mhttps://${DOMAIN_NAME}/Panel${PATHS}\033[0m\n"
+# 			    (crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/Panel${PATHS}/backupnutif.php >/dev/null 2>&1") | sort - | uniq - | crontab -
 # 			else
-# 			    echo -e "\e[92mPanel: \e[31mhttps://${DOMAIN_NAME}/wizpanel${PATHS3}\033[0m\n"
-# 			    (crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/wizpanel${PATHS3}/backupnutif.php >/dev/null 2>&1") | sort - | uniq - | crontab -
+# 			    echo -e "\e[92mPanel: \e[31mhttps://${DOMAIN_NAME}/Panel${PATHS3}\033[0m\n"
+# 			    (crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/Panel${PATHS3}/backupnutif.php >/dev/null 2>&1") | sort - | uniq - | crontab -
 # 			fi
 			
 			
@@ -230,10 +230,10 @@ do
 
 			(crontab -l ; echo "0 * * * * ./dbbackupwizwiz.sh") | sort - | uniq - | crontab -
 			
-			wget https://raw.githubusercontent.com/wizwizdev/wizwizxui-timebot/main/dbbackupwizwiz.sh | chmod +x dbbackupwizwiz.sh
+			wget https://raw.githubusercontent.com/9800/paybot/main/dbbackupwizwiz.sh | chmod +x dbbackupwizwiz.sh
 			./dbbackupwizwiz.sh
    
-			wget https://raw.githubusercontent.com/wizwizdev/wizwizxui-timebot/main/dbbackupwizwiz.sh | chmod +x dbbackupwizwiz.sh
+			wget https://raw.githubusercontent.com/9800/paybot/main/dbbackupwizwiz.sh | chmod +x dbbackupwizwiz.sh
 			./dbbackupwizwiz.sh
 			
 			echo -e "\n\e[92m The backup settings have been successfully completed.\033[0m\n"
@@ -248,13 +248,13 @@ do
    			userrr=$(cat /root/confwizwiz/dbrootwizwiz.txt | grep '$user' | cut -d"'" -f2)
 			pathsss=$(cat /root/confwizwiz/dbrootwizwiz.txt | grep '$path' | cut -d"'" -f2)
 			pathsss=$(cat /root/confwizwiz/dbrootwizwiz.txt | grep '$path' | cut -d"'" -f2)
-			passsword=$(cat /var/www/html/wizwizxui-timebot/baseInfo.php | grep '$dbPassword' | cut -d"'" -f2)
-   			userrrname=$(cat /var/www/html/wizwizxui-timebot/baseInfo.php | grep '$dbUserName' | cut -d"'" -f2)
+			passsword=$(cat /var/www/html/shop/baseInfo.php | grep '$dbPassword' | cut -d"'" -f2)
+   			userrrname=$(cat /var/www/html/shop/baseInfo.php | grep '$dbUserName' | cut -d"'" -f2)
 			
 			mysql -u $userrr -p$passs -e "DROP DATABASE wizwiz;" -e "DROP USER '$userrrname'@'localhost';" -e "DROP USER '$userrrname'@'%';"
 
-			sudo rm -r /var/www/html/wizpanel${pathsss}
-			sudo rm -r /var/www/html/wizwizxui-timebot
+			sudo rm -r /var/www/html/Panel${pathsss}
+			sudo rm -r /var/www/html/shop
 			
 			clear
 			
