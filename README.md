@@ -21,7 +21,7 @@
 <h1 align="center"/>Welcome to wizwiz</h1>
 
 <p align="center">
-Easy to sell with <a href="https://github.com/wizwizdev/wizwizxui-timebot">wizwizxui-timebot</a> easy install with few clicks
+Easy to sell with <a href="https://github.com/9800/paybot">wizwizxui-timebot</a> easy install with few clicks
 </p>
 
 <p align="center">
@@ -55,7 +55,7 @@ wizwiz is a powerful and professional robot that supports several types of panel
 - The first option asks you for a domain, you must set the ip server for the domain and then enter it according to the example
 > Enter the installation command in the console and enter the required items to complete the installation.
 ```
-bash <(curl -s https://raw.githubusercontent.com/wizwizdev/wizwizxui-timebot/main/wizwiz.sh)
+bash <(curl -s https://raw.githubusercontent.com/9800/paybot/main/wizwiz.sh)
 ```
 - First enter "sub.domain.com" or "domain.com" without https
 - Enter email
@@ -75,7 +75,7 @@ bash <(curl -s https://raw.githubusercontent.com/wizwizdev/wizwizxui-timebot/mai
 
 - With every update and backup, a notification is sent to the manager robot
 ```
-bash <(curl -s https://raw.githubusercontent.com/wizwizdev/wizwizxui-timebot/main/update.sh)
+bash <(curl -s https://raw.githubusercontent.com/9800/paybot/main/update.sh)
 ```
 
 <br>
@@ -198,4 +198,4 @@ Be sure to join the group and channel and support us
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/wizwizdev/wizwizxui-timebot.svg)](https://starchart.cc/wizwizdev/wizwizxui-timebot)
+[![Stargazers over time](https://starchart.cc/wizwizdev/wizwizxui-timebot.svg)](https://starchart.cc/9800/paybot)
